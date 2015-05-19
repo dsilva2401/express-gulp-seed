@@ -17,6 +17,16 @@ gulp create-module --name login
 gulp develop
 ```
 
+#### Create module using a template
+```bash
+gulp create-module --name login --template material
+gulp develop
+```
+Available templates
+- basic
+- material
+
+
 #### Remove module
 ```bash
 gulp remove-module --name login
