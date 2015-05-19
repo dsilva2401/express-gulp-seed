@@ -5,7 +5,8 @@
 	app.directive('home', [function() {
 		return {
 			restrict: 'C',
-			template: '<h1>:P</h1>'
+			templateUrl: 'modules/home/app/main.html',
+			controller: 'appContainer'
 		};
 	}]);
 

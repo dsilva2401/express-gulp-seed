@@ -20,6 +20,7 @@ module.exports = function(mName) {
 	return moduleFilesByPattern( mName, [
 		'app/+([a-z]).js',
 		'app/*.config.js',
+		'app/*.controller.js',
 		'app/*.directive.js',
 		'*/+([a-z]).js',
 		'*/*.directive.js',

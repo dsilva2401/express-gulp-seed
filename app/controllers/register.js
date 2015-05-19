@@ -4,13 +4,15 @@ var express = require('express'),
 	models = require('../models');
 
 module.exports = function (app) {
-	app.use('/', router);
+	app.use('/register', router);
 };
 
 router.get('/', function (req, res, next) {
-	res.render('material-angular-layout', {
-		title: 'Home',
-		module: 'home',
-		scripts: getModuleFiles('home')
+	// models.Article.findAll().then(function (articles) {
+	// });
+	res.render('angular-layout', {
+		title: 'register',
+		module: 'register',
+		scripts: getModuleFiles('register')
 	});
 });
