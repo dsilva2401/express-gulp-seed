@@ -68,6 +68,27 @@ gulp.task('remove-module', function(name) {
 		rmdir('./public/modules/'+name, function() {});
 });
 
+
+gulp.task('create-model', function(name) {
+	if(!name) throw new Error('Model name not defined');
+	// Create  model
+		fs.writeFileSync('./app/models/'+name.toLowerCase()+'.js',
+			'module.exports = function (sequelize, DataTypes) {\n\n\tvar '+name+' = sequelize.define(\''+name+'\', {\n\t\ttitle: DataTypes.STRING,\n\t\turl: DataTypes.STRING,\n\t\ttext: DataTypes.STRING\n\t}, {\n\t\tclassMethods: {\n\t\t\tassociate: function (models) {\n\t\t\t\t// example on how to add relations\n\t\t\t\t// '+name+'.hasMany(models.Comments);\n\t\t\t}\n\t\t}\n\t});\n\n\treturn '+name+';\n};'
+		);
+	// Create service
+		fs.writeFileSync('./app/services/'+name.toLowerCase()+'.js',
+			'var models = require(\'../models\');\n\nmodule.exports = function (router) {\n\t\n\t// GET\n\t\trouter.get(\'/'+name.toLowerCase()+'s\', function (req, res, next) {\n\t\t\tmodels.'+name+'.findAll().then(function ('+name.toLowerCase()+'s) {\n\n\t\t\t\tres.json('+name.toLowerCase()+'s);\n\t\t\t\t\n\t\t\t});\n\t\t});\n\n\t\trouter.get(\'/'+name.toLowerCase()+'s/:'+name.toLowerCase()+'Id\', function (req, res, next) {\n\t\t\tmodels.'+name+'.findOne( req.params.'+name.toLowerCase()+'Id ).then(function ('+name.toLowerCase()+') {\n\n\t\t\t\tres.json('+name.toLowerCase()+');\n\t\t\t\t\n\t\t\t});\n\t\t});\n\n}'
+		);
+});
+
+gulp.task('remove-model', function(name) {
+	if(!name) throw new Error('Model name not defined');
+	// Remove model
+		fs.unlinkSync('./app/models/'+name.toLowerCase()+'.js');
+	// Remove service
+		fs.unlinkSync('./app/services/'+name.toLowerCase()+'.js');
+});
+
 gulp.task('develop', function () {
 	livereload.listen();
 	nodemon({
@@ -103,8 +124,10 @@ gulp.task('default', function() {
 	console.log('\n\n');
 	console.log( 'Not parameters defined..' );
 	console.log( 'Available parameters:' );
-	console.log( 'gulp create-module --name <module-name>' );
+	console.log( 'gulp create-module --name <module-name> --template <template-name>' );
 	console.log( 'gulp remove-module --name <module-name>' );
+	console.log( 'gulp create-model --name <model-name>' );
+	console.log( 'gulp remove-model --name <model-name>' );
 	console.log( 'gulp develop' );
 	/*modules.forEach(function(m) {
 		console.log( 'gulp develop-'+m+'' );

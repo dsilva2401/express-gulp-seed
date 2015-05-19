@@ -1,0 +1,8 @@
+extends basic-layout
+
+block content
+	h1= title
+	each r in routes
+		a(href=baseRoute+r.route.path)
+			h3 #{baseRoute+r.route.path}
+

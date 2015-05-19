@@ -12,6 +12,7 @@ db.sequelize
   .sync()
   .then(function () {
     app.listen(config.port);
+    console.log( 'Server at port '+config.port );
   }).catch(function (e) {
     throw new Error(e);
   });
