@@ -1,5 +1,6 @@
 var express = require('express'),
 	router = express.Router(),
+	getModuleFiles = require('../../useful/getModuleFiles'),
 	models = require('../models');
 
 module.exports = function (app) {
