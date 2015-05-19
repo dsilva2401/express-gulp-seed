@@ -26,6 +26,17 @@ Available templates
 - basic
 - material
 
+#### Create model
+```bash
+gulp create-model --name user
+gulp develop
+```
+
+#### Remove model
+```bash
+gulp remove-model --name user
+gulp develop
+```
 
 #### Remove module
 ```bash
