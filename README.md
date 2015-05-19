@@ -7,6 +7,7 @@ mkdir my-app
 cd my-app
 git clone https://github.com/dsilva2401/express-gulp-seed.git .
 npm install
+bower install
 gulp develop
 ```
 
