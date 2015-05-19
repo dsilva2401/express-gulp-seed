@@ -65,7 +65,7 @@ gulp.task('remove-module', function(name) {
 	// Delete controller
 		fs.unlinkSync('app/controllers/'+name+'.js');
 	// Delete public module
-		rmdir('./public/modules/'+name);
+		rmdir('./public/modules/'+name, function() {});
 });
 
 gulp.task('develop', function () {
