@@ -151,8 +151,6 @@ gulp.task('install-plugin', function(name) {
 
 gulp.task('remove-plugin', function(name) {
 	if(!name) throw new Error('Plugin name not defined');
-	// console.log( shell.which(name) );
-	// shell.exec('echo 123');
 	var pluginPath = 'plugins/'+name;
 	var componentsMap = {
 		'views': 'app/views',
@@ -174,15 +172,14 @@ gulp.task('remove-plugin', function(name) {
 
 gulp.task('default', function() {
 	console.log('\n\n');
-	console.log( 'Not parameters defined..' );
-	console.log( 'Available parameters:' );
+	console.log( 'Task not defined..' );
+	console.log( 'Available tasks:' );
 	console.log( 'gulp create-module --name <module-name> --template <template-name>' );
 	console.log( 'gulp remove-module --name <module-name>' );
 	console.log( 'gulp create-model --name <model-name>' );
 	console.log( 'gulp remove-model --name <model-name>' );
+	console.log( 'gulp install-plugin --name <plugin-name>' );
+	console.log( 'gulp remove-plugin --name <plugin-name>' );
 	console.log( 'gulp develop' );
-	/*modules.forEach(function(m) {
-		console.log( 'gulp develop-'+m+'' );
-	});*/
 	console.log('\n\n');
 });

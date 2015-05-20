@@ -1,0 +1,40 @@
+<md-content
+	layout
+	layout-align="center center"
+	style="background:#eee;"
+	flex
+>
+
+	<form
+		ng-submit="methods.submit()"
+		style="background:#fff;"
+		class="md-whiteframe-z3"
+		flex="50"
+		layout-padding
+		layout="column"
+	>
+		
+		<md-subheader class="md-primary" flex>Información Personal</md-subheader>
+
+		<md-input-container flex>
+			<label>Nombre</label>
+			<input ng-model="models.user.name" required>
+		</md-input-container>
+		<md-input-container flex>
+			<label>Email</label>
+			<input type="email" ng-model="models.user.email" required>
+		</md-input-container>
+		<md-input-container flex>
+			<label>Contraseña</label>
+			<input type="password" ng-model="models.user.password" required>
+		</md-input-container>
+		<md-input-container flex>
+			<label>Reingresar Contraseña</label>
+			<input type="password" ng-model="models.user.repassword">
+		</md-input-container>
+
+		<md-button class="md-raised md-primary" style="margin-top: 20px;">Registrar</md-button>
+
+	</form>
+
+</md-content>
