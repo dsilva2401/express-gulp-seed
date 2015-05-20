@@ -7,6 +7,7 @@ var gulp = require('gulp-param')(require('gulp'), process.argv),
 	order = require("gulp-order"),
 	watch = require('gulp-watch'),
 	rmdir = require( 'rmdir' ),
+	shell = require('shelljs'),
 	fs = require('fs');
 
 
@@ -118,6 +119,57 @@ gulp.task('develop', function () {
 // 		});
 // 	});
 // });
+
+gulp.task('install-plugin', function(name) {
+	if(!name) {
+		var availablePlugins = fs.readdirSync('plugins');
+		console.log('\n\n');
+		console.log('Available plugins:');
+		availablePlugins.forEach(function(plugin) {
+			console.log('gulp install-plugin --name '+plugin);
+		});
+		console.log('\n\n');
+		return;
+	}
+	// console.log( shell.which(name) );
+	var pluginPath = 'plugins/'+name;
+	var componentsMap = {
+		'views': 'app/views',
+		'models': 'app/models',
+		'services': 'app/services',
+		'controllers': 'app/controllers',
+		'public-modules': 'public/modules'
+	}
+	var pluginComponents = fs.readdirSync(pluginPath);
+	console.log( 'Installing plugin '+name+'..' );
+	pluginComponents.forEach(function (pComponent) {
+		shell.exec('cp -rv '+pluginPath+'/'+pComponent+'/* '+componentsMap[pComponent]+'/');
+	});
+	console.log('Plugin installed..');
+	shell.exec( 'cat '+pluginPath+'/README.md' );
+});
+
+gulp.task('remove-plugin', function(name) {
+	if(!name) throw new Error('Plugin name not defined');
+	// console.log( shell.which(name) );
+	// shell.exec('echo 123');
+	var pluginPath = 'plugins/'+name;
+	var componentsMap = {
+		'views': 'app/views',
+		'models': 'app/models',
+		'services': 'app/services',
+		'controllers': 'app/controllers',
+		'public-modules': 'public/modules'
+	}
+	var pluginComponents = fs.readdirSync(pluginPath);
+	console.log( 'Removing plugin '+name+'..' );
+	pluginComponents.forEach(function (pComponent) {
+		var componentItems = fs.readdirSync( pluginPath+'/'+pComponent );
+		componentItems.forEach(function (componentItem) {
+			shell.exec( 'rm -rfv '+componentsMap[pComponent]+'/'+componentItem );
+		});
+	});
+});
 
 
 gulp.task('default', function() {

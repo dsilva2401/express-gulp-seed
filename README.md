@@ -14,32 +14,42 @@ gulp develop
 #### Create module
 ```bash
 gulp create-module --name login
-gulp develop
 ```
 
 #### Create module using a template
 ```bash
 gulp create-module --name login --template material
-gulp develop
 ```
 Available templates
 - basic
 - material
 
+#### Remove module
+```bash
+gulp remove-module --name login
+```
+
 #### Create model
 ```bash
 gulp create-model --name user
-gulp develop
 ```
 
 #### Remove model
 ```bash
 gulp remove-model --name user
-gulp develop
 ```
 
-#### Remove module
+#### Install plugin
 ```bash
-gulp remove-module --name login
-gulp develop
+gulp install-plugin --name plugin-name
+```
+
+#### List available plugins
+```bash
+gulp install-plugin
+```
+
+#### Remove plugin
+```bash
+gulp remove-plugin --name plugin-name
 ```
