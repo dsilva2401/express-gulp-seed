@@ -31,12 +31,12 @@ gulp remove-module --name login
 
 #### Create model
 ```bash
-gulp create-model --name user
+gulp create-model --name User
 ```
 
 #### Remove model
 ```bash
-gulp remove-model --name user
+gulp remove-model --name User
 ```
 
 #### Install plugin
