@@ -4,7 +4,7 @@ var express = require('express'),
 	models = require('../models');
 
 module.exports = function (app) {
-	app.use('/home', router);
+	app.use('/', router);
 };
 
 router.get('/', function (req, res, next) {
