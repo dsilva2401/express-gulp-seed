@@ -2,9 +2,9 @@
 
 	var app = ang.module('app');
 
-	app.directive('home', [function() {
+	app.directive('appContainer', [function() {
 		return {
-			restrict: 'C',
+			restrict: 'EA',
 			templateUrl: 'modules/home/app/main.html',
 			controller: 'appContainer'
 		};

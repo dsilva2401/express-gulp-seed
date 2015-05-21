@@ -2,8 +2,8 @@
 
 	var app = ang.module('app');
 
-	app.config(function($mdThemingProvider) {
+	app.config( ['$mdThemingProvider', function( $mdThemingProvider ) {
 		$mdThemingProvider.theme('default').primaryPalette('blue');
-	});
+	}]);
 
 })(angular)

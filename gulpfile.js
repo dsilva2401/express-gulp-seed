@@ -151,6 +151,9 @@ gulp.task('install-plugin', function(name) {
 
 gulp.task('remove-plugin', function(name) {
 	if(!name) throw new Error('Plugin name not defined');
+	var blackList = [
+		'README.md'
+	];
 	var pluginPath = 'plugins/'+name;
 	var componentsMap = {
 		'views': 'app/views',
@@ -162,6 +165,8 @@ gulp.task('remove-plugin', function(name) {
 	var pluginComponents = fs.readdirSync(pluginPath);
 	console.log( 'Removing plugin '+name+'..' );
 	pluginComponents.forEach(function (pComponent) {
+		console.log( blackList.indexOf( pComponent ) )
+		if( blackList.indexOf(pComponent) != -1 ) return;
 		var componentItems = fs.readdirSync( pluginPath+'/'+pComponent );
 		componentItems.forEach(function (componentItem) {
 			shell.exec( 'rm -rfv '+componentsMap[pComponent]+'/'+componentItem );
